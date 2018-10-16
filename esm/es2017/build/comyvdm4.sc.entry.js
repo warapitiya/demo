@@ -11,6 +11,9 @@ var ScreenTemplate;
 })(ScreenTemplate || (ScreenTemplate = {}));
 class SentimeterComponent {
     constructor() {
+        this.theme = {
+            backgroundColor: '#11767E'
+        };
         this.containerHover = false;
         this.showText = false;
         this.activatedScreen = ScreenTemplate.FAB_SCREEN;
@@ -58,7 +61,8 @@ class SentimeterComponent {
             marginLeft: '10px'
         };
         if (this.activatedScreen === ScreenTemplate.QUESTION_SCREEN) {
-            return (h("div", { id: "gt-sentimeter", class: "gt-sentimeter gt-sentimeter-more" },
+            const containerStyle = Object.assign({}, this.theme);
+            return (h("div", { style: containerStyle, id: "gt-sentimeter", class: "gt-sentimeter gt-sentimeter-more" },
                 h("div", { id: "gt-sentimeter-wrapper", class: "gt-sentimeter-wrapper" },
                     h("p", { class: "gt-sentimeter-text", style: textStyles },
                         "Thank you! Your satisfication is our priority. ",
@@ -73,10 +77,11 @@ class SentimeterComponent {
         }
     }
     renderMoreFeedback() {
+        const containerStyle = Object.assign({}, this.theme);
         return (h("div", null,
             this.renderQuestion(),
             h("div", { class: `modal ${this.showModal ? 'show-modal' : ''}` },
-                h("div", { class: "modal-content" },
+                h("div", { style: containerStyle, class: "modal-content" },
                     h("span", { class: "close-button" }, "\u00D7"),
                     h("div", null,
                         h("p", { class: "c-font" }, "What did you like most?"),
@@ -91,7 +96,7 @@ class SentimeterComponent {
                         h("button", { class: "btn btn-transparent", onClick: () => this.handleSubmitClick() }, "CANCEL"),
                         h("button", { class: "btn btn-primary", onClick: () => this.handleSubmitClick() }, "SUBMIT")))),
             h("div", { class: `modal ${this.showThankYouModal ? 'show-modal' : ''}` },
-                h("div", { class: "modal-content" },
+                h("div", { style: containerStyle, class: "modal-content" },
                     h("span", { class: "close-button" }, "\u00D7"),
                     h("div", { class: "thank-you-container" },
                         h("h1", { class: "c-font" }, "Thank you!"),
@@ -101,7 +106,8 @@ class SentimeterComponent {
         const lineHeight = {
             lineHeight: '3.3'
         };
-        return (h("div", { id: "gt-sentimeter", class: "gt-sentimeter gt-sentimeter-rating" },
+        const containerStyle = Object.assign({}, this.theme);
+        return (h("div", { id: "gt-sentimeter", style: containerStyle, class: "gt-sentimeter gt-sentimeter-rating" },
             h("div", { id: "gt-sentimeter-wrapper", class: "gt-sentimeter-wrapper" },
                 h("p", { class: "gt-sentimeter-text", style: lineHeight }, "It is easy to find what I need"),
                 h("div", { class: "gt-sentimeter-thumb", onClick: () => this.handleThumb() },
@@ -118,7 +124,8 @@ class SentimeterComponent {
                             h("path", { d: "m0 0h28.846154v28.846154h-28.846154z" })))))));
     }
     renderFab() {
-        return (h("div", { id: "gt-sentimeter", class: `gt-sentimeter pointer ${this.containerHover ? 'gt-sentimeter-toggle' : ''}`, onMouseEnter: () => this.handleFabToggle(), onMouseLeave: () => this.handleFabToggle(), onClick: () => this.handleFabClick() },
+        const containerStyle = Object.assign({}, this.theme);
+        return (h("div", { id: "gt-sentimeter", style: containerStyle, class: `gt-sentimeter pointer ${this.containerHover ? 'gt-sentimeter-toggle' : ''}`, onMouseEnter: () => this.handleFabToggle(), onMouseLeave: () => this.handleFabToggle(), onClick: () => this.handleFabClick() },
             h("div", { id: "gt-sentimeter-wrapper", class: "gt-sentimeter-wrapper" },
                 h("div", null,
                     h("svg", { height: "32", viewBox: "0 0 33 32", width: "33", xmlns: "http://www.w3.org/2000/svg" },
@@ -138,6 +145,9 @@ class SentimeterComponent {
                     h("p", { class: "gt-sentimeter-text" }, "Help us improve?"))))));
     }
     render() {
+        if (this.themeColor) {
+            this.theme.backgroundColor = this.themeColor;
+        }
         switch (this.activatedScreen) {
             case ScreenTemplate.FAB_SCREEN: {
                 return this.renderFab();
@@ -170,12 +180,15 @@ class SentimeterComponent {
         "showThankYouModal": {
             "state": true
         },
+        "theme": {
+            "state": true
+        },
         "themeColor": {
             "type": String,
             "attr": "theme-color"
         }
     }; }
-    static get style() { return "h1{font-size:2em;margin:.67em 0}textarea{overflow:auto}p{font-size:16px}*{font-family:\"Helvetica Neue\",serif}.gt-sentimeter{display:-webkit-box;display:-ms-flexbox;display:flex;position:fixed;z-index:999;bottom:10px;left:20px;-webkit-transition:all .5s;transition:all .5s;background-color:#11767e;color:#fff;padding:10px;border-radius:50px;width:35px;height:35px;text-align:center;margin:0 auto}.gt-sentimeter-rating{width:400px;height:50px}.gt-sentimeter-more{width:670px;height:50px}.pointer{cursor:pointer}.gt-sentimeter-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.gt-sentimeter-toggle{width:200px}path{fill:#fff}.gt-sentimeter-text{font-size:16px;margin:0 0 0 10px;line-height:2.3;white-space:nowrap}.gt-sentimeter-thumb{cursor:pointer;background-color:rgba(0,0,0,.3);width:50px;height:50px;border-radius:50px;-webkit-transition:all .5s;transition:all .5s;line-height:3.8;margin:0 10px}.thumb-flip{-webkit-transform:scaleY(-1);transform:scaleY(-1)}.btn{border-radius:5px;padding:2px 20px;font-weight:700;font-size:18px;font-family:Arial,Helvetica,sans-serif}.btn-primary{background-color:#fff;color:#11767e;-webkit-box-shadow:5px 10px 9px -6px rgba(0,0,0,.28);-moz-box-shadow:5px 10px 9px -6px rgba(0,0,0,.28);box-shadow:5px 10px 9px -6px rgba(0,0,0,.28)}.btn-transparent{color:#fff;background-color:transparent;border-color:transparent}.btn-block{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;height:40px;margin-top:20px;padding-bottom:30px}.thank-you-container{text-align:center;padding:0 30px}.thank-you-container>h1{margin-bottom:0}.modal{z-index:1000;position:fixed;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);opacity:0;visibility:hidden;-webkit-transform:scale(1.1);transform:scale(1.1);-webkit-transition:visibility 0s linear .25s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear .25s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear .25s,opacity .25s 0s,transform .25s;transition:visibility 0s linear .25s,opacity .25s 0s,transform .25s,-webkit-transform .25s}.modal-content{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background-color:#11767e;color:#fff;padding:1rem 30px;border-radius:.5rem}.textarea{font-size:1rem;line-height:1.5;color:#495057;border:1px solid #ced4da;border-radius:.25rem}.input{display:block;width:100%;height:40px;font-size:1rem;line-height:1.5;color:#495057;border:1px solid #ced4da;border-radius:.25rem}.close-button{float:right;width:1.5rem;line-height:1.5rem;text-align:center;cursor:pointer;border-radius:.25rem;color:#fff}.close-button:hover{background-color:#a9a9a9}.show-modal{opacity:1;visibility:visible;-webkit-transform:scale(1);transform:scale(1);-webkit-transition:visibility 0s linear 0s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear 0s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear 0s,opacity .25s 0s,transform .25s;transition:visibility 0s linear 0s,opacity .25s 0s,transform .25s,-webkit-transform .25s}"; }
+    static get style() { return "h1.sc-gt-sentimeter{font-size:2em;margin:.67em 0}textarea.sc-gt-sentimeter{overflow:auto}p.sc-gt-sentimeter{font-size:16px}*.sc-gt-sentimeter{font-family:\"Helvetica Neue\",serif}.gt-sentimeter.sc-gt-sentimeter{display:-webkit-box;display:-ms-flexbox;display:flex;position:fixed;z-index:999;bottom:10px;left:20px;-webkit-transition:all .5s;transition:all .5s;background-color:#11767e;color:#fff;padding:10px;border-radius:50px;width:35px;height:35px;text-align:center;margin:0 auto}.gt-sentimeter-rating.sc-gt-sentimeter{width:400px;height:50px}.gt-sentimeter-more.sc-gt-sentimeter{width:670px;height:50px}.pointer.sc-gt-sentimeter{cursor:pointer}.gt-sentimeter-wrapper.sc-gt-sentimeter{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch}.gt-sentimeter-toggle.sc-gt-sentimeter{width:200px}path.sc-gt-sentimeter{fill:#fff}.gt-sentimeter-text.sc-gt-sentimeter{font-size:16px;margin:0 0 0 10px;line-height:2.3;white-space:nowrap}.gt-sentimeter-thumb.sc-gt-sentimeter{cursor:pointer;background-color:rgba(0,0,0,.3);width:50px;height:50px;border-radius:50px;-webkit-transition:all .5s;transition:all .5s;line-height:3.8;margin:0 10px}.thumb-flip.sc-gt-sentimeter{-webkit-transform:scaleY(-1);transform:scaleY(-1)}.btn.sc-gt-sentimeter{border-radius:5px;padding:2px 20px;font-weight:700;font-size:18px;font-family:Arial,Helvetica,sans-serif}.btn-primary.sc-gt-sentimeter{background-color:#fff;color:#11767e;-webkit-box-shadow:5px 10px 9px -6px rgba(0,0,0,.28);-moz-box-shadow:5px 10px 9px -6px rgba(0,0,0,.28);box-shadow:5px 10px 9px -6px rgba(0,0,0,.28)}.btn-transparent.sc-gt-sentimeter{color:#fff;background-color:transparent;border-color:transparent}.btn-block.sc-gt-sentimeter{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;height:40px;margin-top:20px;padding-bottom:30px}.thank-you-container.sc-gt-sentimeter{text-align:center;padding:0 30px}.thank-you-container.sc-gt-sentimeter > h1.sc-gt-sentimeter{margin-bottom:0}.modal.sc-gt-sentimeter{z-index:1000;position:fixed;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);opacity:0;visibility:hidden;-webkit-transform:scale(1.1);transform:scale(1.1);-webkit-transition:visibility 0s linear .25s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear .25s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear .25s,opacity .25s 0s,transform .25s;transition:visibility 0s linear .25s,opacity .25s 0s,transform .25s,-webkit-transform .25s}.modal-content.sc-gt-sentimeter{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background-color:#11767e;color:#fff;padding:1rem 30px;border-radius:.5rem}.textarea.sc-gt-sentimeter{font-size:1rem;line-height:1.5;color:#495057;border:1px solid #ced4da;border-radius:.25rem}.input.sc-gt-sentimeter{display:block;width:100%;height:40px;font-size:1rem;line-height:1.5;color:#495057;border:1px solid #ced4da;border-radius:.25rem}.close-button.sc-gt-sentimeter{float:right;width:1.5rem;line-height:1.5rem;text-align:center;cursor:pointer;border-radius:.25rem;color:#fff}.close-button.sc-gt-sentimeter:hover{background-color:#a9a9a9}.show-modal.sc-gt-sentimeter{opacity:1;visibility:visible;-webkit-transform:scale(1);transform:scale(1);-webkit-transition:visibility 0s linear 0s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear 0s,opacity .25s 0s,-webkit-transform .25s;transition:visibility 0s linear 0s,opacity .25s 0s,transform .25s;transition:visibility 0s linear 0s,opacity .25s 0s,transform .25s,-webkit-transform .25s}"; }
 }
 
 export { SentimeterComponent as GtSentimeter };

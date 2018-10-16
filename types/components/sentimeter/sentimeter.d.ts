@@ -6,8 +6,12 @@ declare enum ScreenTemplate {
     MODAL_WINDOW = 3,
     THANK_YOU_WINDOW = 4
 }
+interface Theme {
+    backgroundColor: string;
+}
 export declare class SentimeterComponent {
     themeColor: string;
+    theme: Theme;
     containerHover: boolean;
     showText: boolean;
     activatedScreen: ScreenTemplate;

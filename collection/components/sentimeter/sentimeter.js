@@ -8,6 +8,9 @@ var ScreenTemplate;
 })(ScreenTemplate || (ScreenTemplate = {}));
 export class SentimeterComponent {
     constructor() {
+        this.theme = {
+            backgroundColor: '#11767E'
+        };
         this.containerHover = false;
         this.showText = false;
         this.activatedScreen = ScreenTemplate.FAB_SCREEN;
@@ -55,7 +58,8 @@ export class SentimeterComponent {
             marginLeft: '10px'
         };
         if (this.activatedScreen === ScreenTemplate.QUESTION_SCREEN) {
-            return (h("div", { id: "gt-sentimeter", class: "gt-sentimeter gt-sentimeter-more" },
+            const containerStyle = Object.assign({}, this.theme);
+            return (h("div", { style: containerStyle, id: "gt-sentimeter", class: "gt-sentimeter gt-sentimeter-more" },
                 h("div", { id: "gt-sentimeter-wrapper", class: "gt-sentimeter-wrapper" },
                     h("p", { class: "gt-sentimeter-text", style: textStyles },
                         "Thank you! Your satisfication is our priority. ",
@@ -70,10 +74,11 @@ export class SentimeterComponent {
         }
     }
     renderMoreFeedback() {
+        const containerStyle = Object.assign({}, this.theme);
         return (h("div", null,
             this.renderQuestion(),
             h("div", { class: `modal ${this.showModal ? 'show-modal' : ''}` },
-                h("div", { class: "modal-content" },
+                h("div", { style: containerStyle, class: "modal-content" },
                     h("span", { class: "close-button" }, "\u00D7"),
                     h("div", null,
                         h("p", { class: "c-font" }, "What did you like most?"),
@@ -88,7 +93,7 @@ export class SentimeterComponent {
                         h("button", { class: "btn btn-transparent", onClick: () => this.handleSubmitClick() }, "CANCEL"),
                         h("button", { class: "btn btn-primary", onClick: () => this.handleSubmitClick() }, "SUBMIT")))),
             h("div", { class: `modal ${this.showThankYouModal ? 'show-modal' : ''}` },
-                h("div", { class: "modal-content" },
+                h("div", { style: containerStyle, class: "modal-content" },
                     h("span", { class: "close-button" }, "\u00D7"),
                     h("div", { class: "thank-you-container" },
                         h("h1", { class: "c-font" }, "Thank you!"),
@@ -98,7 +103,8 @@ export class SentimeterComponent {
         const lineHeight = {
             lineHeight: '3.3'
         };
-        return (h("div", { id: "gt-sentimeter", class: "gt-sentimeter gt-sentimeter-rating" },
+        const containerStyle = Object.assign({}, this.theme);
+        return (h("div", { id: "gt-sentimeter", style: containerStyle, class: "gt-sentimeter gt-sentimeter-rating" },
             h("div", { id: "gt-sentimeter-wrapper", class: "gt-sentimeter-wrapper" },
                 h("p", { class: "gt-sentimeter-text", style: lineHeight }, "It is easy to find what I need"),
                 h("div", { class: "gt-sentimeter-thumb", onClick: () => this.handleThumb() },
@@ -115,7 +121,8 @@ export class SentimeterComponent {
                             h("path", { d: "m0 0h28.846154v28.846154h-28.846154z" })))))));
     }
     renderFab() {
-        return (h("div", { id: "gt-sentimeter", class: `gt-sentimeter pointer ${this.containerHover ? 'gt-sentimeter-toggle' : ''}`, onMouseEnter: () => this.handleFabToggle(), onMouseLeave: () => this.handleFabToggle(), onClick: () => this.handleFabClick() },
+        const containerStyle = Object.assign({}, this.theme);
+        return (h("div", { id: "gt-sentimeter", style: containerStyle, class: `gt-sentimeter pointer ${this.containerHover ? 'gt-sentimeter-toggle' : ''}`, onMouseEnter: () => this.handleFabToggle(), onMouseLeave: () => this.handleFabToggle(), onClick: () => this.handleFabClick() },
             h("div", { id: "gt-sentimeter-wrapper", class: "gt-sentimeter-wrapper" },
                 h("div", null,
                     h("svg", { height: "32", viewBox: "0 0 33 32", width: "33", xmlns: "http://www.w3.org/2000/svg" },
@@ -135,6 +142,9 @@ export class SentimeterComponent {
                     h("p", { class: "gt-sentimeter-text" }, "Help us improve?"))))));
     }
     render() {
+        if (this.themeColor) {
+            this.theme.backgroundColor = this.themeColor;
+        }
         switch (this.activatedScreen) {
             case ScreenTemplate.FAB_SCREEN: {
                 return this.renderFab();
@@ -165,6 +175,9 @@ export class SentimeterComponent {
             "state": true
         },
         "showThankYouModal": {
+            "state": true
+        },
+        "theme": {
             "state": true
         },
         "themeColor": {
