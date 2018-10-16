@@ -148,16 +148,13 @@ path {
 }
 
 .modal-content {
-  padding-right: 30px;
-  padding-left: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #11767e;
   color: white;
-  padding: 1rem 1.5rem;
-  /* width: 24rem; */
+  padding: 1rem 30px;
   border-radius: 0.5rem;
 }
 
