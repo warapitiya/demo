@@ -1,0 +1,49 @@
+{
+  "components": [
+    {
+      "tag": "gt-sentimeter",
+      "dependencies": [],
+      "componentClass": "SentimeterComponent",
+      "componentPath": "components/sentimeter/sentimeter.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/sentimeter/sentimeter.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "themeColor",
+          "type": "String",
+          "attr": "theme-color"
+        }
+      ],
+      "states": [
+        {
+          "name": "activatedScreen"
+        },
+        {
+          "name": "containerHover"
+        },
+        {
+          "name": "showModal"
+        },
+        {
+          "name": "showText"
+        },
+        {
+          "name": "showThankYouModal"
+        }
+      ],
+      "shadow": true
+    }
+  ],
+  "collections": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.13.2",
+    "typescriptVersion": "2.9.2"
+  },
+  "bundles": []
+}
