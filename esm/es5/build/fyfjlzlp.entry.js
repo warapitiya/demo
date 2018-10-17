@@ -11,7 +11,8 @@ var ScreenTemplate;
 var SentimeterComponent = /** @class */ (function () {
     function SentimeterComponent() {
         this.theme = {
-            backgroundColor: '#11767E'
+            backgroundColor: '#11767E',
+            color: 'white'
         };
         this.containerHover = false;
         this.showText = false;
@@ -19,6 +20,32 @@ var SentimeterComponent = /** @class */ (function () {
         this.showModal = false;
         this.showThankYouModal = false;
     }
+    SentimeterComponent.prototype.padZero = function (str) {
+        var len = 2;
+        var zeros = new Array(len).join('0');
+        return (zeros + str).slice(-len);
+    };
+    SentimeterComponent.prototype.invertColor = function (hex, bw) {
+        if (hex.indexOf('#') === 0) {
+            hex = hex.slice(1);
+        }
+        if (hex.length === 3) {
+            hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+        }
+        if (hex.length !== 6) {
+            throw new Error('Invalid HEX color.');
+        }
+        var r = parseInt(hex.slice(0, 2), 16), g = parseInt(hex.slice(2, 4), 16), b = parseInt(hex.slice(4, 6), 16);
+        if (bw) {
+            return (r * 0.299 + g * 0.587 + b * 0.114) > 186
+                ? '#000000'
+                : '#FFFFFF';
+        }
+        var cr = (255 - r).toString(16);
+        var cg = (255 - g).toString(16);
+        var cb = (255 - b).toString(16);
+        return "#" + this.padZero(cr) + this.padZero(cg) + this.padZero(cb);
+    };
     SentimeterComponent.prototype.handleFabToggle = function () {
         var _this = this;
         this.containerHover = !this.containerHover;
@@ -91,6 +118,7 @@ var SentimeterComponent = /** @class */ (function () {
     SentimeterComponent.prototype.render = function () {
         if (this.themeColor) {
             this.theme.backgroundColor = this.themeColor;
+            this.theme.color = this.invertColor(this.themeColor, true);
         }
         switch (this.activatedScreen) {
             case ScreenTemplate.FAB_SCREEN: {

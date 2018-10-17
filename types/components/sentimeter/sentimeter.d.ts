@@ -8,6 +8,7 @@ declare enum ScreenTemplate {
 }
 interface Theme {
     backgroundColor: string;
+    color: string;
 }
 export declare class SentimeterComponent {
     themeColor: string;
@@ -17,6 +18,8 @@ export declare class SentimeterComponent {
     activatedScreen: ScreenTemplate;
     showModal: boolean;
     showThankYouModal: boolean;
+    padZero(str: any): string;
+    invertColor(hex: any, bw: any): string;
     handleFabToggle(): void;
     handleFabClick(): void;
     handleThumb(): void;
