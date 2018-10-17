@@ -13,9 +13,13 @@ import './stencil.core';
 export namespace Components {
 
   interface GtSentimeter {
+    'blackAndWhite': boolean;
+    'expandTime': number;
     'themeColor': string;
   }
   interface GtSentimeterAttributes extends StencilHTMLAttributes {
+    'blackAndWhite'?: boolean;
+    'expandTime'?: number;
     'themeColor'?: string;
   }
 }

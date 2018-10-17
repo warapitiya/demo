@@ -2,24 +2,29 @@
  * Normalize.css
  */
 
+:host {
+  --font: "Helvetica Neue", sans-serif;
+  --theme-color: #11767E;
+  --text-color: white;
+}
+
 h1 {
+  font-family: var(--font);
   font-size: 2em;
   margin: 0.67em 0;
 }
 
 textarea {
+  font-family: var(--font);
   overflow: auto;
 }
 
 p {
+  font-family: var(--font);
   font-size: 16px;
 }
 
 /**********/
-
-* {
-  font-family: "Helvetica Neue", serif;
-}
 
 .gt-sentimeter {
   display: flex;
@@ -28,8 +33,8 @@ p {
   bottom: 10px;
   left: 20px;
   transition: all .5s;
-  background-color: #11767E;
-  color: white;
+  background-color: var(--theme-color);
+  color: var(--text-color);
   padding: 10px;
   border-radius: 50px;
   width: 35px;
@@ -39,7 +44,7 @@ p {
 }
 
 .gt-sentimeter-rating {
-  width: 400px;
+  width: 375px;
   height: 50px;
 }
 
@@ -54,7 +59,7 @@ p {
 
 .gt-sentimeter-wrapper {
   display: flex;
-  align-items: stretch;
+  align-items: center;
 }
 
 .gt-sentimeter-toggle {
@@ -62,11 +67,10 @@ p {
 }
 
 path {
-  fill: white;
+  fill: var(--text-color);
 }
 
 .gt-sentimeter-text {
-  font-size: 16px;
   margin: 0 0 0 10px;
   line-height: 2.3;
   white-space: nowrap;
@@ -83,30 +87,35 @@ path {
   margin: 0 10px;
 }
 
-.thumb-flip {
-  transform: scaleY(-1);
-  /*filter: ;*/
+.gt-sentimeter-thumb > svg {
+  margin-top: 8px;
+}
+
+.gt-rating-close {
+  cursor: pointer;
+  height: 20px;
 }
 
 .btn {
-  border-radius: 5px;
+  height: 40px;
+  border-radius: 3px;
   padding: 2px 20px;
-  font-weight: bold;
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-family: var(--font);
 }
 
 .btn-primary {
   background-color: white;
-  color: #11767E;
-  -webkit-box-shadow: 5px 10px 9px -6px rgba(0, 0, 0, 0.28);
-  -moz-box-shadow: 5px 10px 9px -6px rgba(0, 0, 0, 0.28);
-  box-shadow: 5px 10px 9px -6px rgba(0, 0, 0, 0.28);
+  border-color: transparent;
+  color: var(--text-color);
+  -webkit-box-shadow: 2px 5px 8px -3px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 2px 5px 8px -3px rgba(0, 0, 0, 0.28);
+  box-shadow: 2px 5px 8px -3px rgba(0, 0, 0, 0.28);
 
 }
 
 .btn-transparent {
-  color: white;
+  color: var(--text-color);
   background-color: transparent;
   border-color: transparent;
 }
@@ -126,7 +135,7 @@ path {
 }
 
 .thank-you-container > h1 {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 /**
@@ -152,15 +161,13 @@ path {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #11767e;
-  color: white;
+  background-color: var(--theme-color);
+  color: var(--text-color);
   padding: 1rem 30px;
   border-radius: 0.5rem;
 }
 
 .textarea {
-  /* display: block; */
-  /* width: 100%; */
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;
@@ -187,7 +194,6 @@ path {
   cursor: pointer;
   border-radius: 0.25rem;
   color: white;
-  /* background-color: lightgray; */
 }
 
 .close-button:hover {

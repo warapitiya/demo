@@ -14,6 +14,16 @@
       },
       "props": [
         {
+          "name": "blackAndWhite",
+          "type": "Boolean",
+          "attr": "black-and-white"
+        },
+        {
+          "name": "expandTime",
+          "type": "Number",
+          "attr": "expand-time"
+        },
+        {
           "name": "themeColor",
           "type": "String",
           "attr": "theme-color"
@@ -25,6 +35,9 @@
         },
         {
           "name": "containerHover"
+        },
+        {
+          "name": "initialFabTrigger"
         },
         {
           "name": "showModal"
@@ -39,6 +52,9 @@
           "name": "theme"
         }
       ],
+      "hostElement": {
+        "name": "el"
+      },
       "shadow": true
     }
   ],

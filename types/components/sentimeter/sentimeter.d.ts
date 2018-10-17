@@ -11,20 +11,30 @@ interface Theme {
     color: string;
 }
 export declare class SentimeterComponent {
+    el: HTMLElement;
     themeColor: string;
+    blackAndWhite: boolean;
+    expandTime: number;
     theme: Theme;
     containerHover: boolean;
     showText: boolean;
     activatedScreen: ScreenTemplate;
     showModal: boolean;
     showThankYouModal: boolean;
-    padZero(str: any): string;
-    invertColor(hex: any, bw: any): string;
+    initialFabTrigger: {
+        primaryTickId: any;
+        secondaryTickId: any;
+    };
+    componentDidLoad(): void;
+    static padZero(str: any): string;
+    static invertColor(hex: any, bw: any): string;
     handleFabToggle(): void;
+    clearTickTimeout(): void;
     handleFabClick(): void;
     handleThumb(): void;
     handleQuestionClick(): void;
     handleSubmitClick(): void;
+    changeScreen(screen: ScreenTemplate): void;
     renderQuestion(): JSX.Element;
     renderMoreFeedback(): JSX.Element;
     renderRating(): JSX.Element;
