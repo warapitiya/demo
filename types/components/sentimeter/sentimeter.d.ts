@@ -13,6 +13,7 @@ interface Theme {
 export declare class SentimeterComponent {
     el: HTMLElement;
     themeColor: string;
+    btnColor: string;
     blackAndWhite: boolean;
     expandTime: number;
     theme: Theme;

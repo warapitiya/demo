@@ -14,11 +14,13 @@ export namespace Components {
 
   interface GtSentimeter {
     'blackAndWhite': boolean;
+    'btnColor': string;
     'expandTime': number;
     'themeColor': string;
   }
   interface GtSentimeterAttributes extends StencilHTMLAttributes {
     'blackAndWhite'?: boolean;
+    'btnColor'?: string;
     'expandTime'?: number;
     'themeColor'?: string;
   }
