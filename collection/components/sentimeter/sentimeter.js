@@ -185,6 +185,7 @@ export class SentimeterComponent {
             this.theme.color = SentimeterComponent.invertColor(this.themeColor, this.blackAndWhite);
             this.el.style.setProperty('--text-color', this.theme.color);
             this.el.style.setProperty('--btn-color', this.btnColor);
+            this.el.style.setProperty('--btn-background-color', this.btnBackgroundColor);
         }
         switch (this.activatedScreen) {
             case ScreenTemplate.FAB_SCREEN: {
@@ -209,6 +210,10 @@ export class SentimeterComponent {
         "blackAndWhite": {
             "type": Boolean,
             "attr": "black-and-white"
+        },
+        "btnBackgroundColor": {
+            "type": String,
+            "attr": "btn-background-color"
         },
         "btnColor": {
             "type": String,

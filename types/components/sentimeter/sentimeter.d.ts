@@ -14,6 +14,7 @@ export declare class SentimeterComponent {
     el: HTMLElement;
     themeColor: string;
     btnColor: string;
+    btnBackgroundColor: string;
     blackAndWhite: boolean;
     expandTime: number;
     theme: Theme;

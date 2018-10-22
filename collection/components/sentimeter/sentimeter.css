@@ -6,6 +6,7 @@
   --font: "Helvetica Neue", sans-serif;
   --theme-color: #11767E;
   --text-color: white;
+  --btn-background-color: #11767E;
   --btn-color: white;
 }
 
@@ -106,7 +107,7 @@ path {
 }
 
 .btn-primary {
-  background-color: var(--btn-color);
+  background-color: var(--btn-background-color);
   border-color: transparent;
   color: var(--text-color);
   -webkit-box-shadow: 2px 5px 8px -3px rgba(0, 0, 0, 0.28);
