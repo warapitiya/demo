@@ -99,6 +99,7 @@ path {
 }
 
 .btn {
+  cursor: pointer;
   height: 40px;
   border-radius: 3px;
   padding: 2px 20px;
@@ -159,6 +160,7 @@ path {
 }
 
 .modal-content {
+  min-width: 320px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -170,7 +172,8 @@ path {
 }
 
 .textarea {
-  font-size: 1rem;
+  width: 100%;
+  font-size: 16px;
   line-height: 1.5;
   color: #495057;
   border: 1px solid #ced4da;
